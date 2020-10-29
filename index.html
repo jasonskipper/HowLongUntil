@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <p id="countdown"></p>
+        <script>
+            var end = new Date("Oct 29, 2020 17:30:00").getTime();
+            var interval = setInterval(function() {
+
+                var current = new Date().getTime();
+                var howlonguntil = end-current;
+
+                var d = Math.floor(howlonguntil/(86400000));
+                var h = Math.floor((howlonguntil % (86400000))/(3600000));
+                var m = Math.floor ((howlonguntil % (3600000)) / (60000));
+                var s = Math.floor((howlonguntil%(60000))/1000); 
+
+                document.getElementById("countdown").innerHTML = d + " days, " + h + " hours, " + m + " minutes, and " + s + " seconds. ";
+
+                document.title = h + " hours, " + m + " minutes ";
+                if(howlonguntil < 0) {
+                    clearInterval(interval);
+                    document.getElementById("countdown").innerHTML = "EXPIRED";
+                    document.title="EXPIRED";
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>
